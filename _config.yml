@@ -36,4 +36,9 @@ navigation:
     url: /tech-tools/
 
 plugins:
-  - jekyll-remote-theme
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache

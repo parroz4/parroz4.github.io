@@ -1,6 +1,7 @@
 ---
 layout: home
 title: "My Personal Site"
+author: "Nome Cognome"
 ---
 
 # About Me

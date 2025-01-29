@@ -1,6 +1,38 @@
-theme: minima
-title: My Personal Site
+remote_theme: mmistakes/minimal-mistakes
+title: "My Personal Site"
 description: >-
   I am a computer enthusiast and always keep up to date with new technologies.
   I am also passionate about cars and sports in general, and I am always
   looking for something new to learn related to computers.
+
+# Impostazioni del layout
+paginate: 5
+permalink: /:categories/:title/
+show_excerpts: true
+
+# Autore
+author:
+  name: "Your Name"
+  avatar: "/assets/images/avatar.png"
+  bio: "Computer enthusiast, passionate about cars and sports."
+  location: "Italy"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/username"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://linkedin.com/in/username"
+
+# Menu di navigazione
+navigation:
+  - title: "Home"
+    url: /
+  - title: "About"
+    url: /about/
+  - title: "Tech Tools"
+    url: /tech-tools/
+
+# Abilita GitHub Pages
+plugins:
+  - jekyll-remote-theme

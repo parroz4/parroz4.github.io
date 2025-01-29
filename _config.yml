@@ -4,7 +4,7 @@ plugins:
 
 minimal_mistakes_skin: "dark"
 
-title: "My Personal Site"
+title: "parroz4"
 description: >-
   I am a computer enthusiast and always keep up to date with new technologies.
   I am also passionate about cars and sports in general, and I am always
@@ -19,6 +19,7 @@ author:
   avatar: "/assets/images/avatar.png"
   bio: "Computer enthusiast, passionate about cars and sports."
   location: "Italy"
+  email: "4github.envision799@aleeas.com"
   links:
     - label: "GitHub"
       icon: "fab fa-github"
@@ -26,8 +27,6 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
       url: "https://www.linkedin.com/in/francesco-parrotta-26aba4b1/"
-    - label: "email"
-      url: "4github.envision799@aleeas.com"
 
 navigation:
   - title: "Home"

@@ -5,12 +5,12 @@ description: >-
   I am also passionate about cars and sports in general, and I am always
   looking for something new to learn related to computers.
 
-# Impostazioni del layout
+minimal_mistakes_skin: "dark"  # Attiva la skin dark
+
 paginate: 5
 permalink: /:categories/:title/
 show_excerpts: true
 
-# Autore
 author:
   name: "Your Name"
   avatar: "/assets/images/avatar.png"
@@ -24,7 +24,6 @@ author:
       icon: "fab fa-linkedin"
       url: "https://linkedin.com/in/username"
 
-# Menu di navigazione
 navigation:
   - title: "Home"
     url: /
@@ -33,6 +32,5 @@ navigation:
   - title: "Tech Tools"
     url: /tech-tools/
 
-# Abilita GitHub Pages
 plugins:
   - jekyll-remote-theme

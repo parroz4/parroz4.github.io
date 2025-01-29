@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "My Personal Site"
-author: "Your Name"
+author_profile: true
 ---
 
 # About Me

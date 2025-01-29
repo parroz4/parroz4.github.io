@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: single
 title: "My Personal Site"
 author: "Your Name"
 ---

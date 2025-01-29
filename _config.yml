@@ -15,17 +15,19 @@ permalink: /:categories/:title/
 show_excerpts: true
 
 author:
-  name: "Your Name"
+  name: "Francesco Parrotta"
   avatar: "/assets/images/avatar.png"
   bio: "Computer enthusiast, passionate about cars and sports."
   location: "Italy"
   links:
     - label: "GitHub"
       icon: "fab fa-github"
-      url: "https://github.com/username"
+      url: "https://github.com/parroz4"
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
-      url: "https://linkedin.com/in/username"
+      url: "https://www.linkedin.com/in/francesco-parrotta-26aba4b1/"
+    - label: "email"
+      url: "4github.envision799@aleeas.com"
 
 navigation:
   - title: "Home"

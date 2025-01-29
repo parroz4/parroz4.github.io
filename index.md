@@ -1,7 +1,7 @@
 ---
 layout: home
 title: "My Personal Site"
-author: Your Name
+author: "Your Name"
 ---
 
 # About Me

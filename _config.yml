@@ -1,6 +1,4 @@
 remote_theme: "mmistakes/minimal-mistakes"
-plugins:
-  - jekyll-include-cache
 
 minimal_mistakes_skin: "dark"
 
@@ -10,9 +8,15 @@ description: >-
   I am also passionate about cars and sports in general, and I am always
   looking for something new to learn related to computers.
 
+url: "https://parroz4.github.io"
+
 paginate: 5
+paginate_path: "/blog/page:num/"
 permalink: /:categories/:title/
 show_excerpts: true
+
+include:
+  - _pages
 
 author:
   name: "Francesco Parrotta"
@@ -28,14 +32,6 @@ author:
       icon: "fab fa-linkedin"
       url: "https://www.linkedin.com/in/francesco-parrotta-26aba4b1/"
 
-navigation:
-  - title: "Home"
-    url: /
-  - title: "About"
-    url: /about/
-  - title: "Tech Tools"
-    url: /tech-tools/
-
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
@@ -43,3 +39,20 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      share: true
+      related: true
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true

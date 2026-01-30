@@ -1,1 +1,1 @@
-Sitemap: /sitemap.xml
+Sitemap: https://parroz4.github.io/sitemap.xml

@@ -1,0 +1,381 @@
+<p>A production-grade home server running <strong>24 containerized services</strong> on a single Raspberry Pi 5 (8 GB), fully managed with Docker Compose and secured through Cloudflare Zero Trust.</p>
+
+<p><a href="https://github.com/parroz4/homelab-pi5" class="btn btn--inverse">View on GitHub</a></p>
+
+<h2 id="hardware">Hardware</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Specification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SBC</td>
+      <td>Raspberry Pi 5, 8 GB RAM</td>
+    </tr>
+    <tr>
+      <td>OS Storage</td>
+      <td>64 GB SD Card</td>
+    </tr>
+    <tr>
+      <td>Data Storage</td>
+      <td>1 TB External SSD (USB 3.0)</td>
+    </tr>
+    <tr>
+      <td>Network</td>
+      <td>Gigabit Ethernet</td>
+    </tr>
+    <tr>
+      <td>OS</td>
+      <td>Raspberry Pi OS (Debian 12 Bookworm, 64-bit)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="architecture">Architecture</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERNET
+   |
+   v
+Cloudflare (WAF + Tunnel)
+   |
+   v
+Raspberry Pi 5
+   ├── Pi-hole DNS
+   ├── Cloudflared Tunnel
+   └── Docker Containers (24 services)
+          |
+          v
+   External SSD (Data Store)
+</code></pre></div></div>
+
+<p>All traffic enters through a Cloudflare Tunnel – no ports are exposed on the router. Pi-hole provides network-wide DNS filtering, and Docker containers are isolated with dedicated networks.</p>
+
+<h2 id="services">Services</h2>
+
+<h3 id="media-and-storage-6">Media and Storage (6)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Purpose</th>
+      <th>Why Chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Immich</td>
+      <td>Photo management</td>
+      <td>Google Photos alternative with full AI features</td>
+    </tr>
+    <tr>
+      <td>Jellyfin</td>
+      <td>Media streaming</td>
+      <td>Open-source Plex alternative</td>
+    </tr>
+    <tr>
+      <td>Paperless-ngx</td>
+      <td>Document management</td>
+      <td>OCR and full-text search</td>
+    </tr>
+    <tr>
+      <td>Filebrowser</td>
+      <td>Web file manager</td>
+      <td>Simple, lightweight</td>
+    </tr>
+    <tr>
+      <td>Syncthing</td>
+      <td>P2P file sync</td>
+      <td>No cloud dependency</td>
+    </tr>
+    <tr>
+      <td>Sync-in</td>
+      <td>File sync server</td>
+      <td>Alternative sync with MariaDB backend</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="monitoring-and-observability-8">Monitoring and Observability (8)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Purpose</th>
+      <th>Why Chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Beszel</td>
+      <td>System metrics</td>
+      <td>Lightweight, Pi-optimized</td>
+    </tr>
+    <tr>
+      <td>Uptime Kuma</td>
+      <td>Service monitoring</td>
+      <td>Beautiful UI, flexible alerts</td>
+    </tr>
+    <tr>
+      <td>NetAlertX</td>
+      <td>Network discovery</td>
+      <td>Track all devices</td>
+    </tr>
+    <tr>
+      <td>WUD</td>
+      <td>Container updates</td>
+      <td>Know when to update</td>
+    </tr>
+    <tr>
+      <td>LoggiFly</td>
+      <td>Log monitoring</td>
+      <td>Real-time Telegram alerts</td>
+    </tr>
+    <tr>
+      <td>Diun</td>
+      <td>Docker image updates</td>
+      <td>Notifies on new versions</td>
+    </tr>
+    <tr>
+      <td>Speedtest Tracker</td>
+      <td>ISP monitoring</td>
+      <td>Historical bandwidth data</td>
+    </tr>
+    <tr>
+      <td>ChangeDetection</td>
+      <td>Website monitoring</td>
+      <td>Track external changes</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="networking-and-security-2">Networking and Security (2)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Purpose</th>
+      <th>Why Chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Pi-hole</td>
+      <td>DNS + ad-blocking</td>
+      <td>Network-wide protection</td>
+    </tr>
+    <tr>
+      <td>Cloudflared</td>
+      <td>Secure tunnel</td>
+      <td>Zero exposed ports</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="management-3">Management (3)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Purpose</th>
+      <th>Why Chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Portainer</td>
+      <td>Container UI</td>
+      <td>Visual management</td>
+    </tr>
+    <tr>
+      <td>Homepage</td>
+      <td>Dashboard</td>
+      <td>Single pane of glass</td>
+    </tr>
+    <tr>
+      <td>Backrest</td>
+      <td>Backup orchestration</td>
+      <td>Restic made easy</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="automation-2">Automation (2)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Purpose</th>
+      <th>Why Chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Home Assistant</td>
+      <td>Smart home</td>
+      <td>Local-first automation</td>
+    </tr>
+    <tr>
+      <td>N8N</td>
+      <td>Workflow automation</td>
+      <td>Self-hosted Zapier</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="utilities-3">Utilities (3)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Warracker</td>
+      <td>Warranty tracking</td>
+    </tr>
+    <tr>
+      <td>iSponsorBlockTV</td>
+      <td>SponsorBlock for TVs</td>
+    </tr>
+    <tr>
+      <td>Kaneo</td>
+      <td>Project management</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="architecture-decisions">Architecture Decisions</h2>
+
+<h3 id="cloudflare-tunnel-vs-traditional-reverse-proxy">Cloudflare Tunnel vs Traditional Reverse Proxy</h3>
+
+<p>I chose Cloudflare Tunnel instead of exposing ports with nginx or Traefik. This means zero open ports on the router, free SSL certificates and WAF, built-in DDoS protection, and geo-restriction capabilities. The trade-off is a dependency on Cloudflare, but the security benefits outweigh that for home use.</p>
+
+<h3 id="external-ssd-for-data-sd-card-for-os">External SSD for Data, SD Card for OS</h3>
+
+<p>SD cards have limited write cycles, so all database and media data lives on the external SSD. This provides better I/O performance and makes it easy to backup or migrate data independently from the OS.</p>
+
+<h3 id="multi-layer-monitoring">Multi-layer Monitoring</h3>
+
+<p>Rather than a single all-in-one monitoring solution, I run multiple specialized tools: Beszel for low-overhead system metrics, Uptime Kuma for service availability, LoggiFly for real-time log analysis, and WUD for container update tracking. Each tool excels at its specific job.</p>
+
+<h3 id="telegram-for-alerting">Telegram for Alerting</h3>
+
+<p>All notifications go through a Telegram bot. It is free, reliable, delivers instant push notifications, works globally without self-hosting, and has an easy API integration with support for rich formatting.</p>
+
+<h2 id="security">Security</h2>
+
+<p>The homelab uses six security layers:</p>
+
+<ol>
+  <li><strong>Cloudflare WAF + DDoS Protection</strong> – all traffic filtered before reaching the Pi</li>
+  <li><strong>Cloudflare Access (OAuth)</strong> – authentication at the edge</li>
+  <li><strong>Geo-restriction</strong> – Italy only for most services</li>
+  <li><strong>Pi-hole DNS filtering</strong> – blocks ads and malicious domains network-wide</li>
+  <li><strong>Container isolation</strong> – dedicated Docker networks per service group</li>
+  <li><strong>Secrets management</strong> – no default passwords, all secrets in <code class="language-plaintext highlighter-rouge">.env</code> files (gitignored), automated sanitization before commits</li>
+</ol>
+
+<h2 id="backup-strategy">Backup Strategy</h2>
+
+<p>Following the 3-2-1 rule, managed through Backrest with Restic:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Type</th>
+      <th>Local Copy</th>
+      <th>Cloud Copy</th>
+      <th>Frequency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Docker configs</td>
+      <td>SSD</td>
+      <td>Backblaze B2</td>
+      <td>Daily</td>
+    </tr>
+    <tr>
+      <td>Databases</td>
+      <td>SSD</td>
+      <td>Backblaze B2</td>
+      <td>Daily</td>
+    </tr>
+    <tr>
+      <td>Photos (Immich)</td>
+      <td>SSD</td>
+      <td>Backblaze B2</td>
+      <td>Weekly</td>
+    </tr>
+    <tr>
+      <td>Documents</td>
+      <td>SSD</td>
+      <td>Backblaze B2</td>
+      <td>Daily</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All backups are incremental, encrypted, and deduplicated.</p>
+
+<h2 id="skills-demonstrated">Skills Demonstrated</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Technologies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Containerization</td>
+      <td>Docker, Docker Compose, container networking</td>
+    </tr>
+    <tr>
+      <td>Networking</td>
+      <td>DNS (Pi-hole), Cloudflare Tunnel, OAuth</td>
+    </tr>
+    <tr>
+      <td>Monitoring</td>
+      <td>Beszel, Uptime Kuma, LoggiFly, WUD, Telegram alerts</td>
+    </tr>
+    <tr>
+      <td>Automation</td>
+      <td>Home Assistant, N8N workflows, bash scripting</td>
+    </tr>
+    <tr>
+      <td>Security</td>
+      <td>Secret management, geo-restriction, HTTPS everywhere</td>
+    </tr>
+    <tr>
+      <td>Backup</td>
+      <td>Restic, Backrest, Backblaze B2, 3-2-1 strategy</td>
+    </tr>
+    <tr>
+      <td>Linux Admin</td>
+      <td>Debian/Raspberry Pi OS, systemd, permissions, storage</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="what-is-next">What is Next</h2>
+
+<ul>
+  <li>Kubernetes migration (k3s) for learning container orchestration</li>
+  <li>Prometheus + Grafana stack for deeper metrics</li>
+  <li>Automated testing for compose files</li>
+  <li>Terraform for Cloudflare configuration</li>
+</ul>
